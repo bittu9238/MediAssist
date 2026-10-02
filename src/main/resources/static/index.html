@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>MediAssist - Medical Support Assistant</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+    <!-- Navigation Bar -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            🏥 MediAssist
+        </div>
+
+        <nav>
+            <a href="#" onclick="showHome()">Home</a>
+            <a href="#">About</a>
+        </nav>
+
+    </header>
+
+
+    <!-- Main Content -->
+
+    <main>
+
+        <!-- Hero Section -->
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <h1>
+                    Your Medical Support Assistant
+                </h1>
+
+                <p>
+                    Get health information, find healthcare facilities,
+                    understand your symptoms, and chat with MediAssist.
+                </p>
+
+                <button onclick="openNormalChat()">
+                    Chat with MediAssist
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- Services -->
+
+        <section class="services">
+
+            <h2>
+                How can we help you?
+            </h2>
+
+            <p class="section-description">
+                Choose a service below
+            </p>
+
+
+            <div class="service-grid">
+
+
+                <!-- Emergency -->
+
+                <div class="service-card emergency"
+                     onclick="openEmergency()">
+
+                    <div class="service-icon">
+                        🚨
+                    </div>
+
+                    <h3>
+                        Emergency Help
+                    </h3>
+
+                    <p>
+                        Get urgent medical guidance
+                        and emergency assistance.
+                    </p>
+
+                </div>
+
+
+                <!-- Hospital -->
+
+                <div class="service-card"
+                     onclick="findHospitals()">
+
+                    <div class="service-icon">
+                        🏥
+                    </div>
+
+                    <h3>
+                        Find Hospitals
+                    </h3>
+
+                    <p>
+                        Find hospitals and healthcare
+                        facilities near you.
+                    </p>
+
+                </div>
+
+
+                <!-- Symptoms -->
+
+                <div class="service-card"
+                     onclick="symptomChecker()">
+
+                    <div class="service-icon">
+                        🩺
+                    </div>
+
+                    <h3>
+                        Symptom Checker
+                    </h3>
+
+                    <p>
+                        Understand possible causes
+                        of your symptoms.
+                    </p>
+
+                </div>
+
+
+                <!-- Medicine -->
+
+                <div class="service-card"
+                     onclick="medicineInfo()">
+
+                    <div class="service-icon">
+                        💊
+                    </div>
+
+                    <h3>
+                        Medicine Information
+                    </h3>
+
+                    <p>
+                        Get general information about
+                        medicines and their uses.
+                    </p>
+
+                </div>
+
+
+                <!-- Appointment -->
+
+                <div class="service-card"
+                     onclick="appointmentHelp()">
+
+                    <div class="service-icon">
+                        📅
+                    </div>
+
+                    <h3>
+                        Appointment Assistance
+                    </h3>
+
+                    <p>
+                        Prepare information and questions
+                        for your healthcare appointment.
+                    </p>
+
+                </div>
+
+
+                <!-- Health -->
+
+                <div class="service-card"
+                     onclick="healthInformation()">
+
+                    <div class="service-icon">
+                        ❤️
+                    </div>
+
+                    <h3>
+                        Health Information
+                    </h3>
+
+                    <p>
+                        Learn about health, prevention,
+                        and common medical conditions.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- Result / Information Area -->
+
+    <section id="resultSection" class ="result-section">
+
+    <div class="chat-box">
+        
+        <div class="chat-sidebar">
+
+            <button class="history-toggle"
+                    onclick="toggleChatHistory()">
+                🕘 History
+            </button>
+
+            <div id="chatHistoryPanel"
+                class="chat-history-panel">
+
+                <h3>Chat History</h3>
+
+                <div id="chatHistoryList">
+                    <p>No previous chats yet.</p>
+                </div>
+
+            </div>
+
+        </div>
+
+
+    <div class="chat-header">
+
+        <div>
+            <h2>🏥 MediAssist AI</h2>
+            <p>Medical Support Assistant</p>
+        </div>
+
+        <button onclick="createNewChat()">
+            + New Chat
+        </button>
+
+    </div>
+        <div id="chatMessages" class="chat-messages">
+
+            <div class="message bot">
+                Hello! I'm MediAssist. How can I help you today?
+            </div>
+
+        </div>
+
+        <div class="chat-input-area">
+
+            <input
+                type="text"
+                id="userMessage"
+                placeholder="Type your health question..."
+                onkeydown="if(event.key === 'Enter') sendMessage()"
+            >
+
+            <button onclick="sendMessage()">
+                Send
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+    </main>
+
+
+    <!-- Footer -->
+
+    <footer>
+
+        <p>
+            MediAssist provides informational support and
+            does not replace professional medical advice.
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

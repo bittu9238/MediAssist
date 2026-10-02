@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>MediAssist - Login</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            min-height: 100vh;
+        }
+
+        .auth-container {
+            width: 380px;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+            color: #2563eb;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 25px;
+        }
+
+        .tabs {
+            display: flex;
+            margin-bottom: 25px;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 12px;
+
+            border: none;
+            background: #f1f5f9;
+
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .tab.active {
+            background: #2563eb;
+            color: white;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+
+            font-size: 15px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
+
+        .auth-button {
+            width: 100%;
+            padding: 12px;
+
+            border: none;
+            border-radius: 8px;
+
+            background: #2563eb;
+            color: white;
+
+            font-size: 16px;
+            cursor: pointer;
+
+            margin-top: 10px;
+        }
+
+        .auth-button:hover {
+            background: #1d4ed8;
+        }
+
+        #message {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+
+            color: #2563eb;
+            cursor: pointer;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="auth-container">
+
+    <div class="logo">
+        🏥 MediAssist
+    </div>
+
+    <div class="subtitle">
+        Medical Support Assistant
+    </div>
+
+
+    <div class="tabs">
+
+        <button
+            class="tab active"
+            id="loginTab"
+            onclick="showLogin()">
+
+            Login
+
+        </button>
+
+        <button
+            class="tab"
+            id="registerTab"
+            onclick="showRegister()">
+
+            Create Account
+
+        </button>
+
+    </div>
+
+
+    <!-- LOGIN FORM -->
+
+    <div id="loginForm">
+
+        <div class="form-group">
+
+            <label>Email</label>
+
+            <input
+                type="email"
+                id="loginEmail"
+                placeholder="Enter your email">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Password</label>
+
+            <input
+                type="password"
+                id="loginPassword"
+                placeholder="Enter your password">
+
+        </div>
+
+
+        <button
+            class="auth-button"
+            onclick="loginUser()">
+
+            Login
+
+        </button>
+
+    </div>
+
+
+    <!-- REGISTER FORM -->
+
+    <div id="registerForm"
+         style="display: none;">
+
+        <div class="form-group">
+
+            <label>Name</label>
+
+            <input
+                type="text"
+                id="registerName"
+                placeholder="Enter your name">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Email</label>
+
+            <input
+                type="email"
+                id="registerEmail"
+                placeholder="Enter your email">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Password</label>
+
+            <input
+                type="password"
+                id="registerPassword"
+                placeholder="Create a password">
+
+        </div>
+
+
+        <button
+            class="auth-button"
+            onclick="registerUser()">
+
+            Create Account
+
+        </button>
+
+    </div>
+
+
+    <div id="message"></div>
+
+
+    <span
+        class="back-link"
+        onclick="goHome()">
+
+        ← Back to MediAssist
+
+    </span>
+
+</div>
+
+
+<script>
+
+function showLogin() {
+
+    document
+        .getElementById("loginForm")
+        .style.display = "block";
+
+    document
+        .getElementById("registerForm")
+        .style.display = "none";
+
+    document
+        .getElementById("loginTab")
+        .classList.add("active");
+
+    document
+        .getElementById("registerTab")
+        .classList.remove("active");
+}
+
+
+function showRegister() {
+
+    document
+        .getElementById("loginForm")
+        .style.display = "none";
+
+    document
+        .getElementById("registerForm")
+        .style.display = "block";
+
+    document
+        .getElementById("loginTab")
+        .classList.remove("active");
+
+    document
+        .getElementById("registerTab")
+        .classList.add("active");
+}
+
+
+async function registerUser() {
+
+    const name =
+        document.getElementById("registerName").value;
+
+    const email =
+        document.getElementById("registerEmail").value;
+
+    const password =
+        document.getElementById("registerPassword").value;
+
+
+    if (!name || !email || !password) {
+
+        showMessage(
+            "Please fill all fields."
+        );
+
+        return;
+    }
+
+
+    try {
+
+        const response = await fetch(
+            "/api/users/register"
+            + "?name=" + encodeURIComponent(name)
+            + "&email=" + encodeURIComponent(email)
+            + "&password=" + encodeURIComponent(password),
+
+            {
+                method: "POST"
+            }
+        );
+
+
+        if (!response.ok) {
+
+            const error =
+                await response.text();
+
+            showMessage(
+                error
+            );
+
+            return;
+        }
+
+
+        showMessage(
+            "Account created successfully. You can now login."
+        );
+
+        showLogin();
+
+    }
+    catch (error) {
+
+        console.error(error);
+
+        showMessage(
+            "Unable to connect to MediAssist server."
+        );
+    }
+}
+
+
+async function loginUser() {
+
+    const email =
+        document.getElementById("loginEmail").value;
+
+    const password =
+        document.getElementById("loginPassword").value;
+
+
+    if (!email || !password) {
+
+        showMessage(
+            "Please enter email and password."
+        );
+
+        return;
+    }
+
+
+    try {
+
+        const response = await fetch(
+            "/api/users/login"
+            + "?email=" + encodeURIComponent(email)
+            + "&password=" + encodeURIComponent(password),
+
+            {
+                method: "POST"
+            }
+        );
+
+
+        if (!response.ok) {
+
+            const error =
+                await response.text();
+
+            showMessage(
+                error
+            );
+
+            return;
+        }
+
+
+        const user =
+            await response.json();
+
+
+        localStorage.setItem(
+            "mediassistUser",
+            JSON.stringify(user)
+        );
+
+
+        window.location.href =
+            "/";
+
+    }
+    catch (error) {
+
+        console.error(error);
+
+        showMessage(
+            "Unable to connect to MediAssist server."
+        );
+    }
+}
+
+
+function showMessage(message) {
+
+    document
+        .getElementById("message")
+        .textContent = message;
+}
+
+
+function goHome() {
+
+    window.location.href = "/";
+
+}
+
+</script>
+
+</body>
+
+</html>
